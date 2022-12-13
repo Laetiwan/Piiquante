@@ -22,6 +22,7 @@ exports.createSauce = (req, res, next) => {
     .catch(error => { res.status(400).json( { error })})
 };
 
+//like
 exports.likeSauce = (req, res, next) => {
     const userId = req.body.userId;
     console.log(userId);
