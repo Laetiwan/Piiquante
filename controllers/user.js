@@ -3,6 +3,11 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 exports.signup = (req, res, next) => {
+    const emailCheck = req.body.email;
+    if(! emailCheck.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {      
+        return res.status(401).json({ error: 'Adresse mail incorrecte !' });
+         
+    }    
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
         const user = new User({
@@ -40,3 +45,4 @@ User.findOne({ email: req.body.email })
     })
     .catch(error => res.status(500).json({ error }));
 };
+

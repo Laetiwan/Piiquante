@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.json());
 
-app.use(helmet());
+//app.use(helmet());
 
 const rateLimit = require('express-rate-limit')
 
